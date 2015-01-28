@@ -45,13 +45,13 @@ Now, what were in practice the stumbling blocks that I found?
 
 http://doc.rust-lang.org/0.12.0/std/collections/struct.HashMap.html
 
-But this lead me to the problem of hashing points. This in turn, would require me to hash each coordinate, but Double in Rust does not implement the trait Hash. Now, there are good reasons for doing so, due to the subtleties of floating point  arithmetic, but they did not apply in my case.
+But this lead me to the problem of hashing points. This in turn, would require me to hash each coordinate, but `Double` in Rust does not implement the trait `Hash`. Now, there are good reasons for doing so, due to the subtleties of floating point  arithmetic, but they did not apply in my case.
 
 2) So I had to find an alternative solution. Let us use
 
 http://doc.rust-lang.org/0.12.0/std/collections/struct.TreeMap.html
 
-Unfortunately, the operation `find` on a TreeMap returns an immutable reference to the value (even though the TreeMap is mutable!), but need to mutate it. With a little [help online](http://stackoverflow.com/questions/26378178/trying-to-dereference-pointer) I was able to make it work, but the solution proposed was kind of hacky and certainly not very clean (look at the answer!). It also involved some copying.
+Unfortunately, the operation `find` on a `TreeMap` returns an immutable reference to the value (even though the `TreeMap` is mutable!), but need to mutate it. With a little [help online](http://stackoverflow.com/questions/26378178/trying-to-dereference-pointer) I was able to make it work, but the solution proposed was kind of hacky and certainly not very clean (look at the answer!). It also involved some copying.
 
 3) Then I tried to parse JSON to read the points. The [obvious attempt](http://stackoverflow.com/questions/26336281/read-json-in-rust) did not work and the proposed solution involved a 11 line definition to define how to parse a point.
 
@@ -108,5 +108,7 @@ Conclusion
 Now, don't take my words: there may be many inaccuracies above, as I am a beginner both with Rust and Nim. If anything, they prove my point better: even after going through a lot of hoops, I still do not have clear many things about Rust.
 
 I hope this helps you!
+
 Best,
+
 Andrea
