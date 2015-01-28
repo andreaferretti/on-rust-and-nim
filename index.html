@@ -88,13 +88,13 @@
 
 <p><a href="http://doc.rust-lang.org/0.12.0/std/collections/struct.HashMap.html">http://doc.rust-lang.org/0.12.0/std/collections/struct.HashMap.html</a></p>
 
-<p>But this lead me to the problem of hashing points. This in turn, would require me to hash each coordinate, but Double in Rust does not implement the trait Hash. Now, there are good reasons for doing so, due to the subtleties of floating point  arithmetic, but they did not apply in my case.</p>
+<p>But this lead me to the problem of hashing points. This in turn, would require me to hash each coordinate, but <code>Double</code> in Rust does not implement the trait <code>Hash</code>. Now, there are good reasons for doing so, due to the subtleties of floating point  arithmetic, but they did not apply in my case.</p>
 
 <p>2) So I had to find an alternative solution. Let us use</p>
 
 <p><a href="http://doc.rust-lang.org/0.12.0/std/collections/struct.TreeMap.html">http://doc.rust-lang.org/0.12.0/std/collections/struct.TreeMap.html</a></p>
 
-<p>Unfortunately, the operation <code>find</code> on a TreeMap returns an immutable reference to the value (even though the TreeMap is mutable!), but need to mutate it. With a little <a href="http://stackoverflow.com/questions/26378178/trying-to-dereference-pointer">help online</a> I was able to make it work, but the solution proposed was kind of hacky and certainly not very clean (look at the answer!). It also involved some copying.</p>
+<p>Unfortunately, the operation <code>find</code> on a <code>TreeMap</code> returns an immutable reference to the value (even though the <code>TreeMap</code> is mutable!), but need to mutate it. With a little <a href="http://stackoverflow.com/questions/26378178/trying-to-dereference-pointer">help online</a> I was able to make it work, but the solution proposed was kind of hacky and certainly not very clean (look at the answer!). It also involved some copying.</p>
 
 <p>3) Then I tried to parse JSON to read the points. The <a href="http://stackoverflow.com/questions/26336281/read-json-in-rust">obvious attempt</a> did not work and the proposed solution involved a 11 line definition to define how to parse a point.</p>
 
@@ -158,9 +158,11 @@ with <a href="https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#
 
 <p>Now, don't take my words: there may be many inaccuracies above, as I am a beginner both with Rust and Nim. If anything, they prove my point better: even after going through a lot of hoops, I still do not have clear many things about Rust.</p>
 
-<p>I hope this helps you!
-Best,
-Andrea</p>
+<p>I hope this helps you!</p>
+
+<p>Best,</p>
+
+<p>Andrea</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/andreaferretti">andreaferretti</a></p>
