@@ -1,6 +1,8 @@
 I was recently contacted from a person I had never met before, asking for some comments on Nim and Rust. Since I have taken a little time to answer, I figured I might as well publish my thoughts.
 
-Please, note that I do not intend to bash Rust, and in fact I am looking forward to their 1.0 release. Also, links are to the 0.12 documentation, because if I recall correctly that was the version I was using when the events took place, but the substance remains the same with the latest releases.
+Please, note that I do not intend to bash Rust, and in fact I am looking forward to their 1.0 release. Below, I mention some interactions I have had with the members of the Rust community. In each case, people have shown to be kind and helpful, so my perspective on the community is definitely positive.
+
+Also, links are to the 0.12 documentation, because if I recall correctly that was the version I was using when the events took place, but the substance remains the same with the latest releases.
 
 The original email
 ==================
