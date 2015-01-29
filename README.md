@@ -1,4 +1,4 @@
-I was recently contacted from a person I had never met before, asking for some comments on Nim and Rust. Since I have taken a little time to answer, I tought I might as well publish my thoughts.
+I was recently contacted from a person I had never met before, asking for some comments on Nim and Rust. Since I have taken a little time to answer, I figured I might as well publish my thoughts.
 
 Please, note that I do not intend to bash Rust, and in fact I am looking forward to their 1.0 release. Also, links are to the 0.12 documentation, because if I recall correctly that was the version I was using when the events took place, but the substance remains the same with the latest releases.
 
