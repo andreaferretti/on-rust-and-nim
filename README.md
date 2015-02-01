@@ -4,6 +4,8 @@ Please, note that I do not intend to bash Rust, and in fact I am looking forward
 
 Also, links are to the 0.12 documentation, because if I recall correctly that was the version I was using when the events took place, but the substance remains the same with the latest releases.
 
+**EDIT** After publishing this on the [Rust forums](http://users.rust-lang.org/t/first-impressions-with-rust/109) I received a pull request with an improved version. This version is slightly less verbose, but in order not to break links, I am pointing to a Github revision that precedes these modifications.
+
 The original email
 ==================
 
@@ -36,7 +38,7 @@ As you probably know, Rust has a compile-time mechanism that guarantees that you
 
 Now, Nim does not have anything like this. In Nim, you either use the garbage collector, or you manually manage pointers, with the associated possibility of errors. That is, while you can program at a low level in Nim, you do not have the safety net provided by Rust. This is no more or no less safe than managing pointers in C, C++ or D.
 
-I believe that much of the difficulty I found in Rust was due to this mechanism, and another part was probably due to the fact that Nim has a much cleaner syntax, which you can easily check by comparing the two implementation, say, of Point: [Nim](https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim) (first 18 lines) vs [Rust](https://github.com/andreaferretti/kmeans/blob/master/rust/src/point/mod.rs)
+I believe that much of the difficulty I found in Rust was due to this mechanism, and another part was probably due to the fact that Nim has a much cleaner syntax, which you can easily check by comparing the two implementation, say, of Point: [Nim](https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim) (first 18 lines) vs [Rust](https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/point/mod.rs)
 
 Writing K-means in Rust
 -----------------------
@@ -71,13 +73,13 @@ What I do not like in Rust
 
 So, while I believe that Rust has good principles, I also think that languages should have a decent ergonomics, and Rust fails at that on many fronts:
 
-* the whole language is verbose: compare [these 10 lines](https://github.com/andreaferretti/kmeans/blob/master/rust/src/point/mod.rs#L30)
+* the whole language is verbose: compare [these 10 lines](https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/point/mod.rs#L30)
 with [this single line](https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#L10)
 * the API of the standard library is overcomplicated (look at `SipHash` above, or the mutability issue on `TreeMap::find`, or the hoops to jump to parse a JSON file)
 * cargo itself requires a byzantine structure to distinguish between lib and executable: look at the directory structure of the Rust example
 * the documentation is also quite poor. Look at the [documentation for Hash](http://doc.rust-lang.org/0.12.0/std/hash/trait.Hash.html) Is it clear to you what you have to implement? What is that type parameter `S`?
 
-There are other small things that turned out not to be a problem, but were nevertheless overcomplicated. Look at [this line](https://github.com/andreaferretti/kmeans/blob/master/rust/src/algo/mod.rs#L45)
+There are other small things that turned out not to be a problem, but were nevertheless overcomplicated. Look at [this line](https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/algo/mod.rs#L45)
 
 Why do I have to convert the vector to iterator and back, instead of being able to map it directly? I guess this is to leave the possibility to map into another container type (say, from a `Vector` to a `List`), but adding a map function on Vector would have not prevented this more sophisticated use.
 
