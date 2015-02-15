@@ -73,7 +73,7 @@ What I do not like in Rust
 
 So, while I believe that Rust has good principles, I also think that languages should have a decent ergonomics, and Rust fails at that on many fronts:
 
-* the whole language is verbose: compare [these 10 lines](https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/point/mod.rs#L30)
+* the whole language is verbose: compare [these 10 lines](https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/point/mod.rs#L30-L39)
 with [this single line](https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#L10)
 * the API of the standard library is overcomplicated (look at `SipHash` above, or the mutability issue on `TreeMap::find`, or the hoops to jump to parse a JSON file)
 * cargo itself requires a byzantine structure to distinguish between lib and executable: look at the directory structure of the Rust example
