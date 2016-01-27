@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>On Rust and Nim by andreaferretti</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
@@ -48,7 +48,7 @@
 <p><strong>EDIT</strong> After publishing this on the <a href="http://users.rust-lang.org/t/first-impressions-with-rust/109">Rust forums</a> I received a pull request with an improved version. This version is slightly less verbose, but in order not to break links, I am pointing to a Github revision that precedes these modifications.</p>
 
 <h1>
-<a id="the-original-email" class="anchor" href="#the-original-email" aria-hidden="true"><span class="octicon octicon-link"></span></a>The original email</h1>
+<a id="the-original-email" class="anchor" href="#the-original-email" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The original email</h1>
 
 <p>I hope you don't mind if I contact you directly, and ignore if you're offended, but I saw your post on the parasail email list and looked at your <a href="https://github.com/andreaferretti/kmeans">KMeans benchmark</a>.</p>
 
@@ -59,7 +59,7 @@
 <p>Again, feel free to ignore this email.</p>
 
 <h1>
-<a id="my-answer" class="anchor" href="#my-answer" aria-hidden="true"><span class="octicon octicon-link"></span></a>My answer</h1>
+<a id="my-answer" class="anchor" href="#my-answer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>My answer</h1>
 
 <p>Hi,</p>
 
@@ -75,7 +75,7 @@
 <p>I would choose Nim for projects where I can afford a GC, and evaluate case by case for other projects.</p>
 
 <h2>
-<a id="general-remarks" class="anchor" href="#general-remarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>General remarks</h2>
+<a id="general-remarks" class="anchor" href="#general-remarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General remarks</h2>
 
 <p>As you probably know, Rust has a compile-time mechanism that guarantees that you make an appropriate use of pointers, avoiding such errors as: use of uninitialized pointers, double free, use after free and so on. Essentially, it does this through the use of compiler-enforced smart pointers, such as unique pointers or shared pointers. To achieve this, the notion of a type is expanded in such a way that each pointer has a type and also a lifetime, and the compiler checks that the use of lifetimes is correct. I will not expand, as many resources on Rust explain the mechanism in detail.</p>
 
@@ -84,7 +84,7 @@
 <p>I believe that much of the difficulty I found in Rust was due to this mechanism, and another part was probably due to the fact that Nim has a much cleaner syntax, which you can easily check by comparing the two implementation, say, of Point: <a href="https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim">Nim</a> (first 18 lines) vs <a href="https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/point/mod.rs">Rust</a></p>
 
 <h2>
-<a id="writing-k-means-in-rust" class="anchor" href="#writing-k-means-in-rust" aria-hidden="true"><span class="octicon octicon-link"></span></a>Writing K-means in Rust</h2>
+<a id="writing-k-means-in-rust" class="anchor" href="#writing-k-means-in-rust" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Writing K-means in Rust</h2>
 
 <p>Now, what were in practice the stumbling blocks that I found?</p>
 
@@ -107,18 +107,18 @@
 <p>5) Then with the help of one of Rust mantainers <a href="http://codereview.stackexchange.com/questions/67577/k-means-in-rust">here</a> I was finally able to get it working as it is now. Notice the use of <code>mem::transmute</code> that I don't think I would have been able to find myself.</p>
 
 <h2>
-<a id="writing-k-means-in-nim" class="anchor" href="#writing-k-means-in-nim" aria-hidden="true"><span class="octicon octicon-link"></span></a>Writing K-means in Nim</h2>
+<a id="writing-k-means-in-nim" class="anchor" href="#writing-k-means-in-nim" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Writing K-means in Nim</h2>
 
 <p>In Nim, I was able to obtain an implementation (garbage-collected) of about the same running time in the very first morning I had ever heard of Nim, essentially by literal translation of the Python version. It turned out I had made an unnecessary copy, and once that was cleared out, the Nim version was faster (!).</p>
 
 <h2>
-<a id="what-i-do-not-like-in-rust" class="anchor" href="#what-i-do-not-like-in-rust" aria-hidden="true"><span class="octicon octicon-link"></span></a>What I do not like in Rust</h2>
+<a id="what-i-do-not-like-in-rust" class="anchor" href="#what-i-do-not-like-in-rust" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What I do not like in Rust</h2>
 
 <p>So, while I believe that Rust has good principles, I also think that languages should have a decent ergonomics, and Rust fails at that on many fronts:</p>
 
 <ul>
 <li>the whole language is verbose: compare <a href="https://github.com/andreaferretti/kmeans/blob/935b8966d4fe0d4854d3d69ec0fbfb4dd69a3fd1/rust/src/point/mod.rs#L30-L39">these 10 lines</a>
-with <a href="https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#L10">this single line</a>
+with <a href="https://github.com/andreaferretti/kmeans/blob/90c3ddb2495a48af9985ea9b0ae1e982b02c1ee7/nim/algo.nim#L11">this single line</a>
 </li>
 <li>the API of the standard library is overcomplicated (look at <code>SipHash</code> above, or the mutability issue on <code>TreeMap::find</code>, or the hoops to jump to parse a JSON file)</li>
 <li>cargo itself requires a byzantine structure to distinguish between lib and executable: look at the directory structure of the Rust example</li>
@@ -130,7 +130,7 @@ with <a href="https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#
 <p>Why do I have to convert the vector to iterator and back, instead of being able to map it directly? I guess this is to leave the possibility to map into another container type (say, from a <code>Vector</code> to a <code>List</code>), but adding a map function on Vector would have not prevented this more sophisticated use.</p>
 
 <h2>
-<a id="what-i-like-in-nim" class="anchor" href="#what-i-like-in-nim" aria-hidden="true"><span class="octicon octicon-link"></span></a>What I like in Nim</h2>
+<a id="what-i-like-in-nim" class="anchor" href="#what-i-like-in-nim" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What I like in Nim</h2>
 
 <p>There are also a lot of things that Nim gives you and Rust does not have, such as</p>
 
@@ -146,7 +146,7 @@ with <a href="https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#
 <p>and probably more</p>
 
 <h2>
-<a id="what-i-do-not-like-in-nim" class="anchor" href="#what-i-do-not-like-in-nim" aria-hidden="true"><span class="octicon octicon-link"></span></a>What I do not like in Nim</h2>
+<a id="what-i-do-not-like-in-nim" class="anchor" href="#what-i-do-not-like-in-nim" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What I do not like in Nim</h2>
 
 <p>What are the pain points of Nim? There are not many, but I will mention:</p>
 
@@ -158,7 +158,7 @@ with <a href="https://github.com/andreaferretti/kmeans/blob/master/nim/algo.nim#
 </ul>
 
 <h2>
-<a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+<a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h2>
 
 <p>Now, don't take my words: there may be many inaccuracies above, as I am a beginner both with Rust and Nim. If anything, they prove my point better: even after going through a lot of hoops, I still do not have clear many things about Rust.</p>
 
